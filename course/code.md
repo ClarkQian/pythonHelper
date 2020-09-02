@@ -1,5 +1,7 @@
 # 关于开头的部分
-1. # -*- coding:utf-8 -*-
-> 为了告诉解释器用utf-8解释我们写的代码  
-> python2默认ascii / python3 默认utf-8
-2. ... 补充关于endode and decode
+1. \# -*- coding:utf-8 -*-
+>> 为了告诉解释器用utf-8解释我们写的代码  
+>> python2默认ascii / python3 默认utf-8
+2. decode and encode
+>> - 我们的中文作为字符串，是解码的形式（即符合人类认知的形式：解决了认识问题的形式）而对于（01001010101 -> b''）这样的形式我们可以编码出来即(encode('code set'))  
+>> - 同样的一组二进制的组合可以通过(gbk:2个字节一个中文)或者是(utf-8:3个字节一个中文)的形式进行解码(decode)对应形成字符串，从而打印
