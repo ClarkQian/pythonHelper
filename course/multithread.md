@@ -188,5 +188,74 @@ queue.qsize()
   ```
 
   
+```python
+## red green light mode
+import threading
+import time
+import queue
 
-  
+productQueue = queue.Queue(maxsize=10)
+
+event = threading.Event()
+
+
+def redLight():
+    event.set() #green one
+    count = 0
+    while True:
+        if count >=0 and count < 10: # red
+            print("red!!!!!!!!!red")
+            event.clear()
+            count+=1
+            time.sleep(0.5)
+        elif count >= 10 and count <= 20: # green
+            print("green!!!!!!!!!green")
+            event.set()
+            count +=1
+            time.sleep(0.5)
+        elif count == 21:
+            count = 0
+        else:
+            pass
+def car():
+    while True:
+        if event.is_set():# green
+            print("moving moving")
+            time.sleep(3)
+        else:
+            event.wait()
+
+
+threading.Thread(target=redLight).start()
+
+for i in range(10):
+    threading.Thread(target=car).start()
+    
+    
+#producer and consumer mode
+import threading
+import time
+import queue
+
+productQueue = queue.Queue(maxsize=10)
+
+
+def produce():
+    count = 0
+    while True:
+        print("producing %s"%count)
+        productQueue.put(count)
+        count += 1
+        time.sleep(0.5)
+
+def consume():
+    while True:
+        print("consuming %s"%productQueue.get())
+        time.sleep(2)
+
+
+threading.Thread(target=produce).start()
+threading.Thread(target=consume).start()
+threading.Thread(target=consume).start()
+
+```
