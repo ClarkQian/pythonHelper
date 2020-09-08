@@ -54,6 +54,7 @@
   ```python
   manager = Manager() # you can use different type of data structure
   dict = manager.dict() #create a share dictionary
+  val  manager.Value(int, 0)#(typecode, value)
   list = manager.list(range(5)) # creating a share list
   
   ```
